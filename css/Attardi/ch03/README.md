@@ -1,61 +1,5 @@
 # Basic CSS Concepts
 
-## Selectors
-
-| selector              | matches
-|-----------------------|----------------
-| `a`                   | all `a` elements
-| `#header`             | `<any id="header">`
-| `.nav-link`           | `<any class="nav-link">`
-| attributes            |
-| `[name]`              | `<any name="?????">`; with `name` of any value
-| `[name="value"]`      | `<any name="value">`; the value `value`
-| `[name~="v1"]`        | `<any name="v1 v2">`; the word `v1`
-| `[name*="alu"]`       | `<any name="value">`; the substring `alu`
-| `[name^="val"]`       | `<any name="value">`; begins with `val`
-| `[name$="lue"]`       | `<any name="value">`; ends with `lue`
-| combinations          |
-| `div, a`              | all `div` and `a` elements
-| `nav a`               | all `a` inside any `nav` element
-| `nav > a`             | all `a`, one level deep in any `nav`
-| `.header ~ div`       | general sibling
-| `.header + div`       | adjacent sibling
-| pseudo-classes        |
-| `:active`             | mouse depressed but not yet released
-| `:checked`            | checked or selected
-| `:focus`              | currently has the focus
-| `:valid`              | valid form elements
-| `:invalid`            | invalid form elements
-| `:visited`            | visited links
-| `:first-child`        | the first child of its parent
-| `:last-child`         | the last child of its parent
-| `:nth-child()`        | `:nth-child(4n)`, `:nth-child(even)`
-| `:nth-of-type()`      | `a:nth-of-type(1)`
-| pseudo-elements       |
-| `::first-line`        | the first line of a block element
-| `::first-letter`      | the first letter of the first line of an element
-| `::before`            | creates a new element as the first child
-| `::after`             | creates a new element as the last child
-
-## Specificity rankings
-
-The specificity rankings of CSS rules from most specific to least specific:
-
-1. Inline styles
-2. ID selectors
-3. Class selectors, attribute selectors, and pseudo-classes
-4. Element selectors, and pseudo-elements
-
-Consider an example `ul#prim-nav li.active`: the specificity value is `112`.
-
-| fragment      | rank  | type
-|---------------|-------|------
-| `ul`          | 0001  | element selector
-| `#prim-nav`   | 0100  | ID selector
-| `li`          | 0001  | element selector
-| `.active`     | 0010  | class selector
-|               | 0112  | sum
-
 ## The box model
 
 Every element in CSS is treated like a rectanglar box that is made up of four parts, starting from the outside: `margin`, `border`, `padding`, and content.
@@ -123,9 +67,75 @@ An `inline-block` element flows with the text like an `inline` element, but
 | `rem` | stands for *root em*, relative to the page's base font size
 | `vw`  | `1vw` is 1% of the *viewport width*
 | `vh`  | `1vh` is 1% of the *viewport height*
+| `%`   | relative to another value
 
 The `rem` unit is a good choice, especially for layout properties, since the size of `1rem` remains constant throughtout the document (unlike the `em` unit). If the browser is zoomed, everything resizes nicely because it's all proportional to the base font size.
 
 The *viewport* is the area of the page that is currently visible in your web browser. f the viewport is resized, then any elements using `vw` units will have their sizes adjusted accordingly. Because `vw` and `vh` are relative to the viewport size, they are a good chice when using responsive design techniques.
 
+## Colors
 
+[A list of *named color*](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color) is available to the MDN Web Docs.
+
+The `transparent` keyword can be used anywhere a color is expected. This will apply no color. This can be useful when an element is positioned on top of another element, and you want the element underneath to show through. The background color of most elements defaults to `transparent`.
+
+| notation                  | description
+|---------------------------|-------------
+| `rgb(255, 0, 0)`          | pure red with 100% opacity
+| `rgba(255, 0, 0, 0.5)`    | pure red with 50% opacity
+
+The HSL color model can be used with the `hsl()` or `hsla()` functions.
+
+## Handling overflow
+
+The content inside a block element, by default, will wrap to a new line when it doesn’t fit horizontally. What happens when an explicit height is set and the content does not fit inside the element's dimensions? This is a condition known as *vertical overflow*.
+
+```
+<style>
+  .container {
+    height: 2rem;
+    width: 10rem;
+  }
+</style>
+<div class="container">
+  This is some really long text that will overflow the container.
+</div>
+```
+
+We can change this behavior with the `white-space` property. If we set this property to `nowrap`, this will also cause *horizontal overflow*.
+
+| if a container has    | then, it may cause
+|-----------------------|-------------
+| an explicit width     | horizontal overflow
+| an explicit height    | vertical overflow
+
+We have some control over how overflow is handled with the `overflow` property.
+
+| `overflow:`   | behavior
+|---------------|----------
+| `visible`     | (default)
+| `hidden`      | the overflowing content is clipped
+| `scroll`      | the scrollbars are provided always
+| `auto`        | the scrollbars are provided if it overflows
+
+
+## CSS variables
+
+Note that CSS variables, officially called *CSS custom properties*, are not supported in Internet Explorer.
+
+CSS variables are declared with two dashes followed by the variable name, such as `--heading-color: blue;`.
+
+```
+<style>
+  .container {
+    --heading-color: blue;
+    font-family: Arial, sans-serif;
+  }
+  .container h1 {
+    color: var(--heading-color);
+  }
+</style>
+<div class="container">
+  <h1>Welcome</h1>
+</div>
+```
