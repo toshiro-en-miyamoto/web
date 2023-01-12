@@ -1,5 +1,21 @@
 # Basic CSS Concepts
 
+- All elements are represented by a rectangular box with content, padding, border, and margin.
+- There are three main types of elements: `block`, `inline`, and `inline-block`.
+- There are many different units for CSS values:
+  - `px` should be avoided except when setting the document’s base font size.
+  - `em` is relative to the element’s font size.
+  - `rem` is relative to the document’s base font size.
+  - `vw`, `vh`, `vmin`, and `vmax` are relative to the viewport size.
+- The `calc` function is used to compute CSS values by performing calculations with multiple values, potentially with different units.
+- Colors can be defined in several ways.
+  - Named colors: `red`, `blue`, and `orangered`
+  - Hexadecimal RGB: `#FF0000`
+  - RGB function: `rgb(255, 0, 0)`
+  - HSL function: `hsl(90, 50%, 25%)`
+- If an element’s content cannot fit inside of it, the content will overflow.
+- Overflow handling can be changed with the `overflow`, `overflow-x`, and `overflow-y` properties.
+
 ## The box model
 
 Every element in CSS is treated like a rectanglar box that is made up of four parts, starting from the outside: `margin`, `border`, `padding`, and content.
@@ -117,7 +133,6 @@ We have some control over how overflow is handled with the `overflow` property.
 | `hidden`      | the overflowing content is clipped
 | `scroll`      | the scrollbars are provided always
 | `auto`        | the scrollbars are provided if it overflows
-
 
 ## CSS variables
 

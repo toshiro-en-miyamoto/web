@@ -1,5 +1,12 @@
 # CSS Selectors
 
+- The most commonly used selectors are element, ID, class, and attribute selectors.
+- Combinators can be used to create even more specific selectors.
+- Multiple selectors can match an element.
+- Conflicts are resolved by using the rule that is more specific.
+
+## Selectors
+
 | selector              | matches
 |-----------------------|----------------
 | `a`                   | all `a` elements
