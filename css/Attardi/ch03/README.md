@@ -89,6 +89,10 @@ The `rem` unit is a good choice, especially for layout properties, since the siz
 
 The *viewport* is the area of the page that is currently visible in your web browser. f the viewport is resized, then any elements using `vw` units will have their sizes adjusted accordingly. Because `vw` and `vh` are relative to the viewport size, they are a good chice when using responsive design techniques.
 
+The `%` unit is relative to the size of another value. What exactly this is relative to depends on the CSS property. For example,
+- for the `font-size` property, the `%` unit is defined as a percentage of the parent element’s font size. However,
+- for the `padding` property, the `%` unit is defined as a percentage of the element’s width.
+
 ## Colors
 
 [A list of *named color*](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color) is available to the MDN Web Docs.

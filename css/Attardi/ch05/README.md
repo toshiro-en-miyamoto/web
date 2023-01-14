@@ -18,6 +18,8 @@
 }
 ```
 
+A `background-color` extends underneath the content and padding box of the element.
+
 ### The `background-image` property
 
 ```

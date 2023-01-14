@@ -57,6 +57,8 @@
 - `vertical-align:`
   - keywords: `baseline`, `sub`, `super`, `text-top`, `text-bottom`, `middle`, `top`, `bottom`
   - units for a value: `em`, `rem`, `%`, etc.
+- `text-shadow:`
+  - four values: X and Y offsets, blur radius, color
 
 ## Web fonts
 
@@ -96,3 +98,7 @@ Usually, a given web font file is only a single weight or style version of the f
 }
 ```
 
+The browser must download the web font files before they can be used. If this is not done quickly, the browser may render the site in a fallback font while the web font is still loading. Once the font is loaded, the text is re-rendered in the new font. This results in unstyled text briefly appearing before being replaced by the correctly styled text:
+
+- the *flash of unstyled text*
+- the *flash of invisible text*
