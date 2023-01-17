@@ -76,3 +76,129 @@ It is not supported in Internet Explorer.
 
 A sticky element acts as a relatively positioned element, scrolling with the document. When the element reaches a point specified via a `top`, `right`, `bottom`, or `left` value, then it turns into a fixed element.
 
+## Containing blocks
+
+This section is based on *Learning Web Design 5th Edition* by Jennifer Robbins, the section *Containing blocks* in Chapter 15.
+
+Here I’ve positioned an inline `em` element (FIGURE 15-19).
+
+```
+em {
+  position: relative;
+  top: 2em;
+  left: 3em;
+  background-color: fuchsia;
+}
+```
+
+![FIGURE 15-19](./lwd5_1519_relative.png)
+
+FIGURE 15-19. When an element is positioned with the `relative` method, the space it would have occupied is preserved.
+
+Let’s take the same example as shown in FIGURE 15-19, only this time we’ll change the value of the `position` property to `absolute` (FIGURE 15-20):
+
+```
+em {
+  position: absolute;
+  top: 2em;
+  left: 3em;
+  background-color: fuchsia;
+}
+```
+
+![FIGURE 15-20](./lwd5_1520_absolute.png)
+
+FIGURE 15-20. When an element is absolutely positioned, it is removed from the flow and the space is closed up.
+
+The most significant difference here, however, is the location of the positioned element. This time, the offset values position the em element 2em down and 3em to the right of the top-left corner of the *viewport* (browser window).
+
+What actually happens in absolute positioning is that the element is positioned relative to its nearest *containing block*. It just so happens that the nearest containing block in FIGURE 15-20 is the root (`html`) element, also known as the *initial containing block*, so the offset values position the `em` element relative to the whole document.
+
+The CSS Positioned Layout Module, Level 3, states,
+
+> The position and size of an element's box(es) are sometimes computed relative to a certain rectangle, called the *containing block* of the element.
+
+It is critical to be aware of the containing block of the element you want to position. We sometimes refer to this as the *positioning context*.
+
+The spec lays out a number of intricate rules for determining the containing block of an element, but it basically boils down to this:
+
+- If the positioned element is *not* contained within another positioned element, then it will be placed relative to the initial containing block (created by the `html` element).
+- But if the element has an ancestor (i.e., is contained within an element) that has its position set to `relative`, `absolute`, or `fixed`, the element will be positioned relative to the edges of *that* element instead.
+
+In the next example, we'll keep the style rule for the `em` element the same, but we'll add a position property to the `p` element, thus making it the containing block for the positioned `em` element.
+
+```
+p { 
+  position: relative;
+  padding: 15px;
+  background-color: #F2F5D5;
+  border: 2px solid purple;
+}
+```
+
+![FIGURE 15-21](./lwd5_1521_containingblock.png)
+
+FIGURE 15-21. The relatively positioned `p` element acts as a containing block for the `em` element.
+
+You can see that the `em` element is now positioned `2em` down and `3em` from the top-left corner of the paragraph box, not the browser window.
+
+Notice also that it is positioned relative to the padding edge of the paragraph (just inside the border), not the content area edge. This is the normal behavior when block elements are used as containing blocks.
+
+When inline elements are used as containing blocks (and they can be), the positioned element is placed relative to the content area edge, not the padding edge.
+
+## `z-index` and stacking contextx
+
+Give the `.header` a `z-index` of 100 and the `.overlay` a `z-index` of 200.
+
+```html
+<style>
+  .header {
+    background-color: red;
+    color: white;
+    height: 1rem;
+    left: 0;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  .body {
+    margin-top: 3.5rem;
+  }
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+  }
+</style>
+<div class="overlay"></div>
+<div class="container">
+  <div class="header">Header</div>
+  <div class="body">
+    Some other page content
+  </div>
+</div>
+```
+
+Because the `.overlay` has a higher `z-index` than the `.header`, it now appears on top of the `.header`.
+
+Without the `z-index` values, the `.header` is not obscured by the `.overlay`; rather, it sits on top of it.
+
+`z-index` doesn't control an element's z-axis ordering globally within the entire document. It only controls the ordering relative to other elements within a given *stacking context*.
+
+Initially, there is one stacking context, formed by the root of the document (the `<html>` element). Within the document, there are certain other elements that will create a new stacking context:
+
+- Any element that has
+  - a `position` other than `static` and
+  - a `z-index` other than `auto`
+- Any element with
+  - an `opacity` less than 1
+- Any element that is
+  - a child of a `flex` or `grid` container and
+  - a `z-index` other than `auto`
+
