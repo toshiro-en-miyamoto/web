@@ -6,13 +6,17 @@
 - the `position` property
   - values: `static`, `relative`, `absolute`, `fixed`, or `sticky`
 - the `z-index` property
+  - it aware of stacking contexts
 - the `float` property
+  - values: `right`, `left`, `inline-start`, or `inline-end`
+  - the `clear` property
+    - values: `none`, `right`, `left`, `both`, `inline-start`, or `inline-end`
 
 ## Paddings
 
 - By default, most elements have zero padding.
-- An element’s padding is not inherited by its children.
-- The `%` unit is defined as a percentage of the element’s width.
+- An element's padding is not inherited by its children.
+- The `%` unit is defined as a percentage of the element's width.
 - A `background-color` extends underneath the content and padding box of the element.
 
 ## Margins
@@ -150,6 +154,10 @@ When inline elements are used as containing blocks (and they can be), the positi
 
 Give the `.header` a `z-index` of 100 and the `.overlay` a `z-index` of 200.
 
+- The `.overlay` appears on top of the `.header`, because the `.overlay` has a higher `z-index` than the `.header`.
+- Without the `z-index` values, the `.header` is not obscured by the `.overlay`; rather, it sits on top of it.
+
+
 ```html
 <style>
   .header {
@@ -185,10 +193,6 @@ Give the `.header` a `z-index` of 100 and the `.overlay` a `z-index` of 200.
 </div>
 ```
 
-Because the `.overlay` has a higher `z-index` than the `.header`, it now appears on top of the `.header`.
-
-Without the `z-index` values, the `.header` is not obscured by the `.overlay`; rather, it sits on top of it.
-
 `z-index` doesn't control an element's z-axis ordering globally within the entire document. It only controls the ordering relative to other elements within a given *stacking context*.
 
 Initially, there is one stacking context, formed by the root of the document (the `<html>` element). Within the document, there are certain other elements that will create a new stacking context:
@@ -202,3 +206,79 @@ Initially, there is one stacking context, formed by the root of the document (th
   - a child of a `flex` or `grid` container and
   - a `z-index` other than `auto`
 
+If no `z-index` is given, there are certain stacking rules that are applied inside a stacking context. These are, from bottom to top:
+
+- The background and borders of the element that creates the stacking context
+- Descendant elements of the element that creates the stacking context that are not positioned
+- Descendant elements of the element that creates the stacking context that are positioned
+
+These rules, in conjunction with explicitly set `z-index` properties, determine the final stacking order of elements.
+
+## Floats
+
+When the `float` property is applied to an element, it is removed from the flow of the document. It then *floats* to the left or right, stopping when it reaches the edge of the containing element, or another floated element.
+
+```html
+<style>
+  .container {
+    width: 10rem;
+  }
+  .floating,
+  .floating-2 {
+    float: right;
+    height: 3rem;
+    width: 3rem;
+  }
+  .floating {
+    background-color: red;
+  }
+  .floating-2 {
+    background-color: blue;
+  }
+</style>
+<div class="container">
+  <div class="floating"></div>
+  <div class="floating-2"></div>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Donec nec sapien dolor. 
+  Nunc condimentum sem nec commodo sollicitudin.
+</div>
+```
+
+First, the red box is floated right, to the edge of the container. Next, the blue box is floated right, to the edge of the red box. Other inline elements (text in the example) will flow around it.
+
+The `clear` property can be used on an element to indicate that it can't be alongside a floated element in a given direction. The `clear` property can be `none` (the default), `left`, `right`, `both`, `inline-start`, or `inline-end`. If an element is cleared in a given direction, and there is a floated element there, the element will be moved so that it is *below* the floated element.
+
+```html
+<style>
+  .container {
+    width: 10rem;
+  }
+  .floating {
+    background-color: red;
+    float: right;
+    height: 3rem;
+    width: 3rem;
+  }
+  .floating-2 {
+    background-color: blue;
+    float: left;
+    height: 5rem;
+    width: 3rem;
+  }
+  .content {
+    clear: right;
+  }
+</style>
+<div class="container">
+  <div class="floating"></div>
+  <div class="floating-2"></div>
+  <div class="content">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec nec sapien dolor. 
+    Nunc condimentum sem nec commodo sollicitudin.
+  </div>
+</div>
+```
+
+The content has been moved to below the right-floated red box. Since the blue box on the left is taller, it is allowed to be floated alongside the content.
