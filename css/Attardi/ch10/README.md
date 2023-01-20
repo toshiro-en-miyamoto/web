@@ -158,7 +158,89 @@ There are several properties that affect flex item sizing. Some of these propert
 
 ## Alignment and spacing
 
-*Alignment*: what happens when all the items are not the same size in the cross axis?
+- *Alignment*: what happens when all the items are not the same size in the cross axis?
+- *Spacing*: how is leftover space distributed?
 
-*Spacing*: how is leftover space distributed?
+The `writing-mode` property:
 
+- `horizontal-tb`:
+  - elements flow from left to right
+  - block elements and lines of text from top to bottom
+- `vertical-rl`:
+  - elements flow from top to bottom
+  - block elements and lines of text flow from right to left
+- `vertical-lr`:
+  - elements flow from top to bottom
+  - block elements and lines of text flow from left to right
+
+| property          | apply to  | description
+|-------------------|:---------:|-------------
+| `justify-content` | container | left, rght, center, even,...
+| `align-items`     | container | stretch, top, bottom, center,...
+| `align-content`   | container | stretch, top, bottom, center,...
+| `align-self`      | item      | aligns each ietm
+| `order`           | item      | displayed order on screen
+
+By default, items are laid out according to two factors:
+
+- the order they occur in the HTML
+- the vaue of the `flex-direction` property
+
+The order property only affects the displayed order on screen. It does not affect the order of the elements in other contexts. A **screen reader**, for example, will read the elements in their source order, not the displayed order.
+
+## Examples
+
+```html
+<style>
+  body {
+    margin: 0;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    border: 5px dashed black;
+    box-sizing: border-box;
+  }
+  .header {
+    background: skyblue;
+    padding: 1rem;
+  }
+  .main {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    border: 5px dashed blue;
+  }
+  .sidebar {
+    background: cornflowerblue;
+    padding: 1rem;
+  }
+  .content {
+    flex-grow: 1;
+    background: beige;
+    padding: 1rem;
+  }
+  .sidebar-2 {
+    background: turquoise;
+    padding: 1rem;
+  }
+  .footer {
+    background: orange;
+    padding: 1rem;
+  }
+</style>
+<div class="container">
+  <header class="header">Header</header>
+  <main class="main">
+    <div class="sidebar">Sidebar</div>
+    <div class="content">Content</div>
+    <div class="sidebar-2">Sidebar 2</div>
+  </main>
+  <footer class="footer">Footer</footer>
+</div>
+```
+
+![FIG 10-12](./Attradi_10_Fig12_HTML.png)
+
+Figure 10-12. A full-page layout with flexbox
