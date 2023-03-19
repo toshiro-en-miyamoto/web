@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HTML Drag and Drop</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        .box {
+            border: 3px solid #666;
+            background-color: #ddd;
+            border-radius: .5em;
+            padding: 10px;
+            cursor: move;
+        }
+        .box.over {
+            border: 3px dotted #666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div draggable="true" class="box">A</div>
+    <div draggable="true" class="box">B</div>
+    <div draggable="true" class="box">C</div>
+</div>
+<a href="https://web.dev/drag-and-drop/">
+    Using the HTML5 Drag and Drop API at web.dev
+</a>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    var dragSource = null;
+
+    function handleDragStart(e) {
+        this.style.opacity = '0.4';
+        dragSource = this;
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', this.innerHTML);
+    }
+    function handleDragEnd(e) {
+        this.style.opacity = '1';
+        items.forEach(function(item){
+            item.classList.remove('over');
+        });
+    }
+    function handleDragOver(e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        return false;
+    }
+    function handleDragEnter(e) {
+        this.classList.add('over');
+    }
+    function handleDragLeave(e) {
+        this.classList.remove('over');
+    }
+    function handleDrop(e) {
+        e.stopPropagation();
+        if (dragSource !== this) {
+            dragSource.innerHTML = this.innerHTML;
+            this.innerHTML = e.dataTransfer.getData('text/html');
+        }
+        return false;
+    }
+
+    let items = document.querySelectorAll('.container .box');
+    items.forEach(function(item) {
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragover',  handleDragOver);
+        item.addEventListener('dragenter', handleDragEnter);
+        item.addEventListener('dragleave', handleDragLeave);
+        item.addEventListener('dragend',   handleDragEnd);
+        item.addEventListener('drop', handleDrop);
+    });
+});
+</script>
+</body>
+</html>
