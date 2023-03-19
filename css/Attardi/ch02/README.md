@@ -19,6 +19,10 @@
 | `[name*="alu"]`       | `<any name="value">`; the substring `alu`
 | `[name^="val"]`       | `<any name="value">`; begins with `val`
 | `[name$="lue"]`       | `<any name="value">`; ends with `lue`
+| compound selectors    |
+| `div.one`             | all `div` with a class of `one`
+| `div.one.two`         | all `div` with a class of both `one` and `two`
+| `div.one[name="val"]` | all `div` and `one` with `name` attrib `val`
 | combinations          |
 | `div, a`              | all `div` and `a` elements
 | `nav a`               | all `a` inside any `nav` element
