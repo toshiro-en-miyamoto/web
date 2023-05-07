@@ -1,8 +1,8 @@
 # Layout and Positioning
 
-- Spacing with padding and margin
-  - paddings create extra space *within* an element
-  - margins create extra space *around* an element
+- Spacing with
+  - `padding`
+  - `margin`
 - the `position` property
   - values: `static`, `relative`, `absolute`, `fixed`, or `sticky`
 - the `z-index` property
@@ -14,6 +14,7 @@
 
 ## Paddings
 
+- The space between an element’s content and its border.
 - By default, most elements have zero padding.
 - An element's padding is not inherited by its children.
 - The `%` unit is defined as a percentage of the element's width.
@@ -21,6 +22,7 @@
 
 ## Margins
 
+- The space between an element’s border and other elements.
 - By default, most elements have no margin.
 - The size of the margin as a percentage, relative to the inline size (width in a horizontal language) of the containing block.
 
