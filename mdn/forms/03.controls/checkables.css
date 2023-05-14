@@ -1,0 +1,17 @@
+form {
+  margin: 0 auto;
+  width: 320px;
+}
+
+form ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+label {
+  display: inline-block;
+  width: 80px;
+  text-align: right;
+  margin-right: 8px;
+}

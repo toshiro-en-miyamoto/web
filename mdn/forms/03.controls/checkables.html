@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Checkable items</title>
+    <link href="checkables.css" rel="stylesheet" />
+  </head>
+  <body>
+    <form>
+      <h2>Vegetables</h2>
+      <fieldset>
+        <legend>
+          Choose all the vegetables you like to eat
+        </legend>
+        <ul>
+          <li>
+            <label for="carrots">Carrots</label>
+            <input type="checkbox" id="carrots" name="vegetable" value="carrots" checked />
+          </li>
+          <li>
+            <label for="peas">Peas</label>
+            <input type="checkbox" id="peas" name="vegetable" value="peas" />
+          </li>
+          <li>
+            <label for="cabbage">Cabbage</label>
+            <input type="checkbox" id="cabbage" name="vegetable" value="cabbage" />
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+    <form>
+      <h2>Meal</h2>
+      <fieldset>
+        <legend>What is your favorite meal?</legend>
+        <ul>
+          <li>
+            <label for="soup">Soup</label>
+            <input type="radio" id="soup" name="meal" value="soup" checked />
+          </li>
+          <li>
+            <label for="curry">Curry</label>
+            <input type="radio" id="curry" name="meal" value="curry" />
+          </li>
+          <li>
+            <label for="pizza">Pizza</label>
+            <input type="radio" id="pizza" name="meal" value="pizza" />
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+  </body>
+</html>
