@@ -140,7 +140,7 @@ Only one button in a given group may be checked at a time; this means that when 
 
 ## Buttons
 
-<img src="./buttons.png">
+<img src="./buttons.png" />
 
 Buttons always behave the same whether you use a `<button>` element or an `<input>` element.
 
@@ -164,9 +164,39 @@ As you can see from the examples, however,
 - `<button>` elements let you use HTML in their content, which is inserted between the opening and closing `<button>` tags.
 - `<input>` elements on the other hand are void elements; their displayed content is inserted inside the value attribute, and therefore only accepts plain text as content.
 
+### Image button
+
+<img src="image-button.png" />
+
+
+```html
+<form>
+  <h2>Image button</h2>
+  <input type="image" alt="Forward" src="forward-button.png" width="24" height="24" />
+</form>
 ```
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
-</svg>
+
+The image button control is rendered exactly like an `<img>` element, except that when the user clicks on it, it behaves like a submit button.
+
+If the image button is used to submit the form, this control doesn't submit its value — instead, the X and Y coordinates of the click on the image are submitted. The coordinates are relative to the image, meaning that the upper-left corner of the image represents the coordinate `(0, 0)`.
+
+The coordinates are sent as two key/value pairs:
+
+- The X value key is the value of the `name` attribute followed by the string "`.x`".
+- The Y value key is the value of the `name` attribute followed by the string "`.y`".
+
 ```
+http://foo.com?pos.x=123&pos.y=456
+```
+
+This is a very convenient way to build a "*hot map*".
+
+## Common attributes
+
+| attribute   | description
+|-------------|-------------
+| `autofocus` | (default: `false`) the element should automatically have input focus when the page loads.
+| `disabled`  | (default: `false`) the user cannot interact with the element. The element inherits its setting from the containing element.
+| `form`      | The `<form>` element that the widget is associated with, used if it is not nested within that form. The value of the attribute must be the id attribute of a `<form>` element in the same document.
+| `name`      | The name of the element; this is submitted with the form data.
+| `value`     | The element's initial value.
