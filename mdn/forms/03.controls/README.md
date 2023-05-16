@@ -138,3 +138,35 @@ Only one button in a given group may be checked at a time; this means that when 
 - If none of them are checked, the whole pool of radio buttons is considered to be in an unknown state and no value is sent with the form.
 - Once one of the radio buttons in a same-named group of buttons is checked, it is not possible for the user to uncheck all the buttons without resetting the form.
 
+## Buttons
+
+<img src="./buttons.png">
+
+Buttons always behave the same whether you use a `<button>` element or an `<input>` element.
+
+
+
+```html
+<form>
+  <h2>Submit buttons</h2>
+  <button type="submit">This is a <strong>submit button</strong></button>
+  <input  type="submit" value="This is a submit button" />
+  <h2>Reset buttons</h2>
+  <button type="reset">This is a <strong>reset button</strong></button>
+  <input  type="reset" value="This is a reset button" />
+  <h2>Anonymous buttons</h2>
+  <button type="button">This is an <strong>anonymous button</strong></button>
+  <input  type="button" value="This is an anonymous button" />
+</form>
+```
+
+As you can see from the examples, however,
+- `<button>` elements let you use HTML in their content, which is inserted between the opening and closing `<button>` tags.
+- `<input>` elements on the other hand are void elements; their displayed content is inserted inside the value attribute, and therefore only accepts plain text as content.
+
+```
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+</svg>
+```
