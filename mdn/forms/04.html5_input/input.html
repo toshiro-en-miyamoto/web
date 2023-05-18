@@ -7,6 +7,7 @@
   </head>
   <body>
     <form>
+      <h2>Slider control</h2>
       <label for="price">House price: </label>
       <input type="range" name="price" id="price"
         min="50000" max="500000" step="100" value="250000" />
@@ -20,5 +21,11 @@
         output.textContent = price.value;
       });
     </script>
+    <form>
+      <h2>Available date?</h2>
+      <label for="myDate">When are you available?</label>
+      <input type="date" name="myDate" id="myDate"
+        min="2013-06-01" max="2013-08-31" step="7" />
+    </form>
   </body>
 </html>

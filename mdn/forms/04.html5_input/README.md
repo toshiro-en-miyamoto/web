@@ -85,6 +85,7 @@ The `number` input type makes sense when the range of valid values is limited, f
 
 ```html
 <form>
+  <h2>Slider control</h2>
   <label for="price">House price: </label>
   <input type="range" name="price" id="price"
         min="50000" max="500000" step="100" value="250000" />
@@ -101,3 +102,12 @@ The `number` input type makes sense when the range of valid values is limited, f
 ```
 
 One problem with sliders is that they don't offer any kind of visual feedback as to what the current value is. This is why we've included an `<output>` element to contain the current value.
+
+## Date and time pickers
+
+Let's look at the different available types in brief.
+
+- `<input type="datetime-local">` to pick a date with time with no specific time zone information.
+- `<input type="month">` to pick a month with a year.
+- `<input type="time">` to pick a time value.
+- `<input type="week">` to pick a week number and its year.
