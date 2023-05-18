@@ -78,3 +78,26 @@ You can also use the step attribute to set the increment increase and decrease c
 The `number` input type makes sense when the range of valid values is limited, for example a person's age or height.
 
 - If the range is too large for incremental increases to make sense (such as USA ZIP codes, which range from `00001` to `99999`), the `tel` type might be a better option; it provides the numeric keypad while forgoing the number's spinner UI feature.
+
+## Slider controls
+
+![Slider](./slider.png)
+
+```html
+<form>
+  <label for="price">House price: </label>
+  <input type="range" name="price" id="price"
+        min="50000" max="500000" step="100" value="250000" />
+  <output class="price-output" for="price"></output>
+</form>
+<script>
+  const price = document.querySelector("#price");
+  const output = document.querySelector(".price-output");
+  output.textContent = price.value;
+  price.addEventListener("input", () => {
+    output.textContent = price.value;
+  });
+</script>
+```
+
+One problem with sliders is that they don't offer any kind of visual feedback as to what the current value is. This is why we've included an `<output>` element to contain the current value.
