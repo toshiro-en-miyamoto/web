@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Other form controls</title>
+  </head>
+  <body>
+    <form>
+      <h2>Basic select box</h2>
+      <label for="fruit">Pick a fruit: </label>
+      <select id="fruit" name="fruit">
+        <option>Banana</option>
+        <option selected>Cherry</option>
+        <option>Lemon</option>
+      </select>
+    </form>
+    <form>
+      <h2>Using groups</h2>
+      <label for="groups">A fruit or vegetable</label>
+      <select id="groups" name="groups">
+        <optgroup label="fruits">
+          <option>Banana</option>
+          <option selected>Cherry</option>
+          <option>Lemon</option>
+        </optgroup>
+        <optgroup label="vegetables">
+          <option>Carrot</option>
+          <option>Eggplant</option>
+          <option>Potato</option>
+        </optgroup>
+      </select>
+    </form>
+    <form>
+      <h2>Multiple choice select box</h2>
+      <label for="multi">Fruits or vegetables</label>
+      <select id="multi" name="multi" multiple size="4">
+        <optgroup label="fruits">
+          <option>Banana</option>
+          <option selected>Cherry</option>
+          <option>Lemon</option>
+        </optgroup>
+        <optgroup label="vegetables">
+          <option>Carrot</option>
+          <option>Eggplant</option>
+          <option>Potato</option>
+        </optgroup>
+      </select>
+    </form>
+  </body>
+</html>

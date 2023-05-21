@@ -105,9 +105,33 @@ One problem with sliders is that they don't offer any kind of visual feedback as
 
 ## Date and time pickers
 
+![pickers](./pickers.png)
+
 Let's look at the different available types in brief.
 
-- `<input type="datetime-local">` to pick a date with time with no specific time zone information.
 - `<input type="month">` to pick a month with a year.
+  ![month](./picker-month.png)
+- `<input type="date">` to pick a date with a month and a month.
+  ![date](./picker-date.png)
 - `<input type="time">` to pick a time value.
-- `<input type="week">` to pick a week number and its year.
+  ![time](./picker-time.png)
+
+```html
+<form>
+  <h2>Date-time pickers</h2>
+  <label for="month">Month</label>
+  <input type="month" name="month" id="month" />
+  <label for="date">Date</label>
+  <input type="date" name="date" id="date" />
+  <label for="time">Time</label>
+  <input type="time" name="time" id="time" />
+</form>
+```
+
+## Color picker
+
+Colors are always a bit difficult to handle. There are many ways to express them: RGB values (decimal or hexadecimal), HSL values, keywords, and so on.
+
+```html
+<input type="color" name="color" id="color" />
+```

@@ -7,8 +7,8 @@ Core forms leaning pathway:
 - [Your first form](./01.first_form//README.md)
 - [How to structure a web form](./02.structure/README.md)
 - [Basic native form controls](./03.controls/README.md)
-- The HTML 5 input types
-- Other form controls
+- [The HTML 5 input types](./04.html5_input/README.md)
+- [Other form controls](./04.other_controls/README.md)
 - Styling web forms
 - Advanced from styling
 - UI pseudo-classes
