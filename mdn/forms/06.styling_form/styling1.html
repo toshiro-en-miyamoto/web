@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Styling web forms</title>
+    <style>
+      form {
+        margin: 0 auto;
+        padding: 1em;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      form li + li {
+        margin-top: 1em;
+      }
+      input,
+      textarea,
+      select,
+      button {
+        width: 150px;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h2>Box sizing</h2>
+      <ul>
+        <li>
+          <input type="radio" />
+        </li>
+        <li>
+          <input type="checkbox" />
+        </li>
+        <li>
+          <input type="range" min="0" max="10" value="3" />
+        </li>
+        <li>
+          <input type="text" value="How wide am I?" />
+        </li>
+        <li>
+          <input type="date" />
+        </li>
+        <li>
+          <select>
+            <option>How wide am I?</option>
+          </select>
+        </li>
+        <li>
+          <textarea>How wide am I?</textarea>
+        </li>
+        <li>
+          <input type="submit" value="How wide am I?" />
+        </li>
+        <li>
+          <button type="submit">How wide am I?</button>
+        </li>
+      </ul>
+    </form>
+  </body>
+</html>
