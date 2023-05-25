@@ -98,3 +98,66 @@ By default, a select box lets a user select only one value. By adding the multip
 In the case of multiple choice select boxes, the select box no longer displays the values as drop-down content — instead, values are displayed at once in a list, with the optional `size` attribute determining the height of the widget.
 
 > **Note**: MDN says that *all* values are displayed at once in a list. With Chromium browser Version 113.0 running on Debian 11, the list without the `size` attribute displays four options.
+
+## Autocomplete box
+
+On page load, it looks like an single line text input:
+
+![auto1](./auto1.png)
+
+When focused (or hovered), a downward triangle appears in the input; a click at the triangle displays all options in a drop-down box, which behaves like a select box:
+
+![auto2](./auto2.png)
+
+Once typed into the input, the drop-down box lists possible matches: 
+
+![auto3](./auto3.png)
+
+```html
+<label for="myFruit">Favorite fruit?</label>
+<input type="text" name="myFruit" id="myFruit" list="mySuggestion" />
+<datalist id="mySuggestion">
+  <option>Apple</option>
+  <option>Banana</option>
+  <option>Blackberry</option>
+  <option>Blueberry</option>
+  <option>Lemon</option>
+  <option>Lychee</option>
+  <option>Peach</option>
+  <option>Pear</option>
+</datalist>
+```
+
+You can provide suggested, automatically-completed values for form widgets using the `<datalist>` element with child `<option>` elements to specify the values to display. The `<datalist>` needs to be given an `id`.
+
+The data list is then bound to an `<input>` element (e.g. a `text` or `email` input type) using the `list` attribute, the value of which is the `id` of the data list to bind.
+
+Once a data list is affiliated with a form widget, its options are used to auto-complete text entered by the user; typically, this is presented to the user as a drop-down box listing possible matches for what they've typed into the input.
+
+## Progress bars
+
+A progress bar represents a value that changes over time up to a maximum value specified by the `max` attribute.
+
+```html
+<progress max="100" value="75">75/100</progress>
+```
+
+This is for implementing anything requiring progress reporting, such as the percentage of total files downloaded, or the number of questions filled in on a questionnaire.
+
+The content inside the `<progress>` element is a fallback for browsers that don't support the element and for screen readers to vocalize it.
+
+## Meter bars
+
+A meter bar represents a fixed value in a range delimited by `max` and `min` values.
+
+```html
+<meter min="0" max="100" value="75" low="33" high="66" optimum="50">75</meter>
+```
+
+The content inside the `<meter>` element is a fallback for browsers that don't support the element and for assistive technologies to vocalize it.
+
+All browsers that implement the `<meter>` element use those values to change the color of the meter bar:
+
+- If the current value is in the preferred part of the range, the bar is green.
+- If the current value is in the average part of the range, the bar is yellow.
+- If the current value is in the worst part of the range, the bar is red.
