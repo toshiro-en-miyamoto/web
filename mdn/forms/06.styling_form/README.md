@@ -66,38 +66,6 @@ If you want to keep the native look and feel of the widgets, you'll face a littl
 
 In the screenshot below, the left column shows the default rendering of
 
-- `<input type="radio">`
-- `<input type="checkbox">`
-- `<input type="range">`
-- `<input type="text">`
-- `<input type="date">`
-- `<select>`
-- `<textarea>`
-- `<input type="submit">`
-- `<button>`
-
-![box model](./boxmodel.png)
-
-The right column on the other hand shows the same elements with our rule applied to them. Notice how this lets us ensure that all of the elements occupy the same amount of space, despite the platform's default rules for each kind of widget.
-
-```css
-input,
-textarea,
-select,
-button {
-  width: 150px;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-```
-
-To give the same size to several different widgets, you can use the `box-sizing` property along with some consistent values for other properties.
-
-Chromium of Debian Bullseye displays the controls as follows:
-
-![box debian](./box-debian.png)
-
 ```html
 <ul>
   <li>
@@ -132,6 +100,29 @@ Chromium of Debian Bullseye displays the controls as follows:
 </ul>
 ```
 
+![box model](./boxmodel.png)
+
+The right column on the other hand shows the same elements with our rule applied to them. Notice how this lets us ensure that all of the elements occupy the same amount of space, despite the platform's default rules for each kind of widget.
+
+```css
+input,
+textarea,
+select,
+button {
+  width: 150px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+```
+
+To give the same size to several different widgets, you can use the `box-sizing` property along with some consistent values for other properties.
+
+Chromium of Debian Bullseye displays the controls as follows:
+
+![box debian](./box-debian.png)
+
+
 ```css
 ul {
   list-style: none;
@@ -142,3 +133,50 @@ form li + li {
   margin-top: 1em;
 }
 ```
+
+## Legend placement
+
+![default legend](./legend-default.png)
+
+By default, the `<legend>` is always positioned over the top border of its `<fieldset>` parent, near the top left corner.
+
+```html
+<fieldset>
+  <legend>
+    Choose all the vegetables you like
+  </legend>
+  <ul>
+    <li>
+      <label for="carrots">Carrots</label>
+      <input type="checkbox" id="carrots" name="vegetable" value="carrots" checked />
+    </li>
+    <li>
+      <label for="peas">Peas</label>
+      <input type="checkbox" id="peas" name="vegetable" value="peas" />
+    </li>
+    <li>
+      <label for="cabbage">Cabbage</label>
+      <input type="checkbox" id="cabbage" name="vegetable" value="cabbage" />
+    </li>
+  </ul>
+</fieldset>
+```
+
+To position it somewhere else, for example inside the fieldset somewhere, or near the bottom left corner, you need to rely on the positioning.
+
+![absolute legend](./legend-absolute.png)
+
+To position the legend in this manner, we used the following CSS (other declarations removed for brevity):
+
+```css
+fieldset {
+  position: relative;
+}
+legend {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+```
+
+The `<fieldset>` needs to be positioned too, so that the `<legend>` is positioned relative to it (otherwise the `<legend>` would be positioned relative to the `<body>`).

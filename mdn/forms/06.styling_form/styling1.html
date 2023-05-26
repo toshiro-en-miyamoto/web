@@ -14,9 +14,14 @@
         padding: 0;
         margin: 0;
       }
+      /*
       form li + li {
         margin-top: 1em;
+      } */
+      .gap1 {
+        margin-top: 1em;
       }
+      /*
       input,
       textarea,
       select,
@@ -25,6 +30,35 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+      } */
+      .box-sized {
+        width: 150px;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      label {
+        display: inline-block;
+        width: 80px;
+        text-align: right;
+        margin-right: 8px;
+      }
+      /*
+      fieldset {
+        position: relative;
+      }
+      legend {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      } */
+      .relative-pos {
+        position: relative;
+      }
+      .bottom-right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
       }
     </style>
   </head>
@@ -32,36 +66,119 @@
     <form>
       <h2>Box sizing</h2>
       <ul>
-        <li>
-          <input type="radio" />
+        <li class="gap1">
+          <input type="radio" class="box-sized" />
         </li>
-        <li>
-          <input type="checkbox" />
+        <li class="gap1">
+          <input type="checkbox" class="box-sized" />
         </li>
-        <li>
-          <input type="range" min="0" max="10" value="3" />
+        <li class="gap1">
+          <input type="range" class="box-sized" min="0" max="10" value="3" />
         </li>
-        <li>
-          <input type="text" value="How wide am I?" />
+        <li class="gap1">
+          <input type="text" class="box-sized" value="How wide am I?" />
         </li>
-        <li>
-          <input type="date" />
+        <li class="gap1">
+          <input type="date" class="box-sized" />
         </li>
-        <li>
-          <select>
+        <li class="gap1">
+          <select class="box-sized">
             <option>How wide am I?</option>
           </select>
         </li>
-        <li>
-          <textarea>How wide am I?</textarea>
+        <li class="gap1">
+          <textarea class="box-sized">How wide am I?</textarea>
         </li>
-        <li>
-          <input type="submit" value="How wide am I?" />
+        <li class="gap1">
+          <input type="submit" class="box-sized" value="How wide am I?" />
         </li>
-        <li>
-          <button type="submit">How wide am I?</button>
+        <li class="gap1">
+          <button type="submit" class="box-sized">How wide am I?</button>
         </li>
       </ul>
     </form>
+    <form>
+      <h2>Legend by default</h2>
+      <fieldset class="gap1">
+        <legend>
+          Choose all the vegetables you like
+        </legend>
+        <ul>
+          <li>
+            <label for="carrots">Carrots</label>
+            <input type="checkbox" id="carrots" name="vegetable" value="carrots" checked />
+          </li>
+          <li>
+            <label for="peas">Peas</label>
+            <input type="checkbox" id="peas" name="vegetable" value="peas" />
+          </li>
+          <li>
+            <label for="cabbage">Cabbage</label>
+            <input type="checkbox" id="cabbage" name="vegetable" value="cabbage" />
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="gap1">
+        <legend>
+          What is your favorite meal?
+        </legend>
+        <ul>
+          <li>
+            <label for="soup">Soup</label>
+            <input type="radio" id="soup" name="meal" value="soup" checked />
+          </li>
+          <li>
+            <label for="curry">Curry</label>
+            <input type="radio" id="curry" name="meal" value="curry" />
+          </li>
+          <li>
+            <label for="pizza">Pizza</label>
+            <input type="radio" id="pizza" name="meal" value="pizza" />
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+    <form>
+      <h2>Legend at bottom-right</h2>
+      <fieldset class="gap1 relative-pos">
+        <legend class="bottom-right">
+          Choose all the vegetables you like
+        </legend>
+        <ul>
+          <li>
+            <label for="carrots">Carrots</label>
+            <input type="checkbox" id="carrots" name="vegetable" value="carrots" checked />
+          </li>
+          <li>
+            <label for="peas">Peas</label>
+            <input type="checkbox" id="peas" name="vegetable" value="peas" />
+          </li>
+          <li>
+            <label for="cabbage">Cabbage</label>
+            <input type="checkbox" id="cabbage" name="vegetable" value="cabbage" />
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="gap1 relative-pos">
+        <legend class="bottom-right">
+          What is your favorite meal?
+        </legend>
+        <ul>
+          <li>
+            <label for="soup">Soup</label>
+            <input type="radio" id="soup" name="meal" value="soup" checked />
+          </li>
+          <li>
+            <label for="curry">Curry</label>
+            <input type="radio" id="curry" name="meal" value="curry" />
+          </li>
+          <li>
+            <label for="pizza">Pizza</label>
+            <input type="radio" id="pizza" name="meal" value="pizza" />
+          </li>
+        </ul>
+      </fieldset>
+    </form>
+
   </body>
 </html>
